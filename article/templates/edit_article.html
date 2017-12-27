@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block my_articles %}
+
+{% if username %}
+<!--<form class="d-flex flex-column form-create_article" action="/articles/save_edit_article/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="btn" value="Save" >
+</form>-->
+{% csrf_token %}
+<label for="id_article_title">Заголовок:</label>
+<input type="text" name="article_title" maxlength="200" id="id_article_title" required>
+<label for="id_article_text">Текст:</label>
+<textarea name="article_text" id="id_article_text" cols="40" required rows="10">{{ article.text }}</textarea>
+<label id="id_article_image">Картинка:</label>
+<input type="file" name="article_image" id="id_article_image">
+<a class="btn" href="/articles/save_edit_article/{{ article.id }}/">Save changes</a>
+{% endif %}
+
+{% endblock %}

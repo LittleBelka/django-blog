@@ -11,8 +11,9 @@
 <body>
     <div>
         <nav class="d-flex flex-row menu">
-            <ul>
+            <ul class="d-flex flex-row">
                 {% if username %}
+                    <li><a href="/articles/my_articles/">My articles</a></li>
                     <li><a href="/auth/logout/">Logout ({{ username }})</a></li>
                 {% else %}
                     <li><a href="/auth/login/">Sign in</a></li>
@@ -20,10 +21,11 @@
             </ul>
         </nav>
     </div>
-    <h1 class="blog"><a href="/">BBBlog!</a></h1>
+    <h1 class="blog"><a href="/articles/all/">BBBlog!</a></h1>
     <div class="d-flex flex-column main-margin">
         {% block article %}{% endblock %}
         {% block login %}{% endblock %}
+        {% block my_articles %}{% endblock %}
     </div>
 </body>
 </html>

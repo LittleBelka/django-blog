@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block my_articles %}
+
+{% if username %}
+<form class="d-flex flex-column form-create_article" action="/articles/save_new_article/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="btn" value="Save" >
+</form>
+{% endif %}
+
+{% endblock %}

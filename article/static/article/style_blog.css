@@ -10,9 +10,13 @@ body {
     color: #000000;
 }
 
+img {
+    width: 450px;
+}
+
 .main-margin {
-    padding-top: 2%
-    margin-top: 3%;
+    padding-top: 0%;
+    margin-top: 0%;
     margin-left: 10%;
     padding-left: 10%;
     margin-right: 10%;
@@ -23,11 +27,11 @@ body {
     padding: 3%;
     border: 4px dashed pink;
     margin-top: 5%;
-    padding-bottom: 0;
+    padding-bottom: 2%;
 }
 
 .blog {
-    padding-top: 3%;
+    padding-top: 1%;
     padding-left: 5%;
 }
 
@@ -142,7 +146,7 @@ a:active {
 }
 
 .submit-in-login {
-    margin-left: 0%;
+    margin-left: 0;
     margin-top: 20px;
 }
 
@@ -187,8 +191,39 @@ a:active {
     color: #005aeb;
 }
 
+.form-create_article {
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 0%;
+    margin-bottom: 10%;
+    color: #4d4d4d;
+}
 
+.form-create_article input[type="submit"] {
+    width: 100px;
+    color: #005aeb;
+    padding-left: 10px;
+    margin-top: 20px;
+}
 
+.form-create_article label {
+    margin-top: 20px;
+}
+
+.form-create_article textarea {
+    padding: 2%;
+    rows: 5 !important;
+}
+
+.btn-create-article {
+    width: 200px;
+    margin:0 auto;
+}
+
+.btn-edit-article {
+    width: 100px;
+
+}
 
 
 
