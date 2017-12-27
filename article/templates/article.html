@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block article %}
+
+<div class="d-flex flex-row">
+    <p class="date-article">{{ article.article_date }}</p>
+    <p class="author-name">| {{ article.article_author.username }}</p>
+</div>
+<p class="title-article">{{ article.article_title }}</p>
+<p class="text-article">{{ article.article_text }}</p>
+{% if article.article_image %}
+    <img class="image-article" src="{{ article.article_image.url }}" width="250"><br>
+{% endif %}
+
+<p class="comments-title">Комментарии:</p>
+{% for comment in comments %}
+    <div class="one-comment">
+        <div class="d-flex flex-row">
+            <p class="date-article">{{ comment.comments_date }}</p>
+            <p class="author-name">{{ comment.comments_from.username }}</p>
+        </div>
+        <p class="text-comment">{{ comment.comments_text }}</p>
+    </div>
+{% endfor %}
+
+{% if username %}
+    <form class="d-flex flex-column form-comment" action="/articles/add_comment/{{ article.id }}/" method="post">
+        {% csrf_token %}
+        {% for fields in form %}
+            {{ fields }}<br>
+        {% endfor %}
+        <input type="submit" class="btn" value="Comment" >
+    </form>
+{% endif %}
+
+{% endblock %}

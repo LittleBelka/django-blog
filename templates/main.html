@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'article/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'article/style_blog.css' %}">
+</head>
+<body>
+    <div>
+        <nav class="d-flex flex-row menu">
+            <ul>
+                {% if username %}
+                    <li><a href="/auth/logout/">Logout ({{ username }})</a></li>
+                {% else %}
+                    <li><a href="/auth/login/">Sign in</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <h1 class="blog"><a href="/">BBBlog!</a></h1>
+    <div class="d-flex flex-column main-margin">
+        {% block article %}{% endblock %}
+        {% block login %}{% endblock %}
+    </div>
+</body>
+</html>
