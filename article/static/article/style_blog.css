@@ -26,8 +26,9 @@ img {
 .one-in-articles {
     padding: 3%;
     border: 4px dashed pink;
-    margin-top: 5%;
+    margin-top: 1%;
     padding-bottom: 2%;
+    margin-bottom: 2%;
 }
 
 .blog {
@@ -218,6 +219,7 @@ a:active {
 .btn-create-article {
     width: 200px;
     margin:0 auto;
+    margin-bottom: 20px;
 }
 
 .btn-edit-article {

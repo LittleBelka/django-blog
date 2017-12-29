@@ -12,7 +12,6 @@ urlpatterns = [
     url(r'^articles/my_articles/$', views.my_articles, name='my_articles'),
     url(r'^articles/create_article/$', views.create_article, name='create_article'),
     url(r'^articles/edit_article/(?P<article_id>\d+)/$', views.edit_article, name='edit_article'),
-    url(r'^articles/save_new_article/$', views.save_new_article, name='save_new_article'),
     url(r'^page/(\d+)/$', views.articles, name='articles'),
 
 

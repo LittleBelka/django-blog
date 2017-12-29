@@ -2,7 +2,7 @@
 {% block my_articles %}
 
 {% if username %}
-<form class="d-flex flex-column form-create_article" action="/articles/save_new_article/" method="post">
+<form class="d-flex flex-column form-create_article" action="" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" class="btn" value="Save" >

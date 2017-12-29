@@ -1,14 +1,14 @@
 {% extends 'main.html' %}
 {% block my_articles %}
 
-<a class="btn btn-primary btn-create-article" href="{%  url 'article:create_article' %}">Create new post</a>
-<!--<a class="btn btn-primary btn-create-article" href="/articles/create_article/">Create new post</a>-->
+<a class="btn btn-primary btn-create-article" href="/articles/create_article/">Create new post</a>
+<!--<a class="btn btn-primary btn-create-article" href="{%  url 'article:create_article' %}">Create new post</a>-->
 
 {% for article in articles %}
     <div class="one-in-articles">
         <div class="d-flex flex-row justify-content-between">
             <p class="date-article">{{ article.article_date }}</p>
-            <!--<a class="btn btn-primary btn-edit-article" href="/articles/edit_article/{{ article.id }}/">Edit</a>-->
+            <a class="btn btn-primary btn-edit-article" href="/articles/edit_article/{{ article.id }}/">Edit</a>
         </div>
 
         <h4><a href="/articles/get/{{ article.id }}/">{{ article.article_title }}</a></h4>

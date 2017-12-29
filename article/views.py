@@ -8,7 +8,7 @@ import datetime
 
 
 def articles(request, page_number=1):
-    all_articles = Article.objects.all()
+    all_articles = Article.objects.all().order_by('-article_date')
     current_page = Paginator(all_articles, 3)
     args = {}
     args['articles'] = current_page.page(page_number)
@@ -42,20 +42,14 @@ def add_comment(request, article_id):
 
 def my_articles(request):
     args = {}
-    args['articles'] = Article.objects.filter(article_author_id=request.user.id)
+    args['articles'] = Article.objects.filter(article_author_id=request.user.id).order_by('-article_date')
     args['username'] = auth.get_user(request).username
     return render(request, 'my_articles.html', args)
 
 
 def create_article(request):
-    article_form = CreateArticleForm
     args = {}
-    args['form'] = article_form
     args['username'] = auth.get_user(request).username
-    return render(request, 'create_article.html', args)
-
-
-def save_new_article(request):
     if request.POST:
         form = CreateArticleForm(request.POST, request.FILES)
         if form.is_valid():
@@ -64,13 +58,18 @@ def save_new_article(request):
             article.article_author = request.user
             article.article_image = form.cleaned_data['article_image']
             form.save()
-    return redirect('/articles/my_articles/')
+            return redirect('/articles/my_articles/')
+    else:
+        form = CreateArticleForm()
+        args['form'] = form
+    return render(request, 'create_article.html', args)
 
 
 def edit_article(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     author = article.article_author
     if author == request.user:
+        args = {}
         if request.POST:
             form = CreateArticleForm(request.POST, request.FILES, instance=article)
             if form.is_valid():
@@ -80,10 +79,11 @@ def edit_article(request, article_id):
                 article.article_date = cur_article.article_date
                 article.article_image = form.cleaned_data['article_image']
                 article.save()
-                return redirect('my_articles.html')
+                return redirect('/articles/my_articles/')
         else:
             form = CreateArticleForm(instance=article)
-        return render(request, 'create_article.html', {'form': form})
+            args = {'form': form, 'username': auth.get_user(request).username}
+        return render(request, 'create_article.html', args)
     else:
         return render(request, 'articles.html')
 
