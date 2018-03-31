@@ -14,6 +14,10 @@
 <textarea name="article_text" id="id_article_text" cols="40" required rows="10">{{ article.text }}</textarea>
 <label id="id_article_image">Картинка:</label>
 <input type="file" name="article_image" id="id_article_image">
+<label id="id_article_music">Музыка:</label>
+<input type="file" name="article_music" id="id_article_music" value="{{ article.article_music }}">
+<label id="id_article_video">Видео:</label>
+<input type="file" name="article_video" id="id_article_video" value="{{ article.article_video }}">
 <a class="btn" href="/articles/save_edit_article/{{ article.id }}/">Save changes</a>
 {% endif %}
 

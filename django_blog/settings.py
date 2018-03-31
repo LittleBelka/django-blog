@@ -88,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BBBlog',
-        'USER': 'katya',
-        'PASSWORD': 'qwerty111',
+        'USER': 'root',
+        'PASSWORD': '1',
         'HOST': 'localhost',
         'PORT': '3306',
     }

@@ -11,6 +11,16 @@
 {% if article.article_image %}
     <img class="image-article" src="{{ article.article_image.url }}"><br>
 {% endif %}
+{% if article.article_music %}
+    <audio controls="controls">
+        <source src="{{ article.article_music.url }}" type="audio/mpeg">
+    </audio>
+{% endif %}
+{% if article.article_video %}
+    <video width="450" height="350" controls="controls">
+        <source src="{{ article.article_video.url }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    </video>
+{% endif %}
 
 <p class="comments-title">Комментарии:</p>
 {% for comment in comments %}

@@ -13,7 +13,9 @@ class Article(models.Model):
     article_text = models.TextField(verbose_name=u"Текст")
     article_date = models.DateTimeField(verbose_name=u"Дата публикации")
     article_image = models.ImageField(upload_to='post_image', blank=True, null=True, verbose_name=u"Картинка")
-    article_author = models.ForeignKey(User)
+    article_music = models.FileField(upload_to='post_music', blank=True, null=True, verbose_name=u"Музыка")
+    article_video = models.FileField(upload_to='post_video', blank=True, null=True, verbose_name=u"Видео")
+    article_author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Comments(models.Model):
@@ -25,5 +27,5 @@ class Comments(models.Model):
 
     comments_text = models.TextField(verbose_name=u"Текст")
     comments_date = models.DateTimeField(verbose_name=u"Дата комментария")
-    comments_article = models.ForeignKey(Article)
-    comments_from = models.ForeignKey(User)
+    comments_article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    comments_from = models.ForeignKey(User, on_delete=models.CASCADE)

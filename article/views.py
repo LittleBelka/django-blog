@@ -57,6 +57,8 @@ def create_article(request):
             article.article_date = datetime.datetime.now()
             article.article_author = request.user
             article.article_image = form.cleaned_data['article_image']
+            article.article_music = form.cleaned_data['article_music']
+            article.article_video = form.cleaned_data['article_video']
             form.save()
             return redirect('/articles/my_articles/')
     else:
@@ -78,6 +80,8 @@ def edit_article(request, article_id):
                 article.article_author = request.user
                 article.article_date = cur_article.article_date
                 article.article_image = form.cleaned_data['article_image']
+                article.article_music = form.cleaned_data['article_music']
+                article.article_video = form.cleaned_data['article_video']
                 article.save()
                 return redirect('/articles/my_articles/')
         else:
