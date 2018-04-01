@@ -4,6 +4,7 @@ from .forms import CommentForm, CreateArticleForm
 
 from django.contrib import auth
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 import datetime
 
 
@@ -24,6 +25,30 @@ def article(request, article_id=1):
     args['form'] = comment_form
     args['username'] = auth.get_user(request).username
     return render(request, 'article.html', args)
+
+
+def calendar_info(request):
+    articles = Article.objects.all().values('article_date', 'article_title', 'id')
+    articles_list = list(articles)
+    data = []
+    for article in articles_list:
+        data.append([
+            '{dt.day}/{dt.month}/{dt.year}'.format(dt=article['article_date']),
+            article['article_title'],
+            '/articles/article/' + str(article['id']),
+            '#0BA1BF'
+        ])
+    return JsonResponse(data, safe=False)
+
+
+def one_article(request, pk):
+    one_date = get_object_or_404(Article, pk=pk).article_date
+    args = {}
+    args['username'] = auth.get_user(request).username
+    args['articles'] = Article.objects.filter(article_date=one_date)
+    args['tags'] = Tags.objects.all()
+    print("in one article")
+    return render(request, 'my_articles.html', args)
 
 
 def add_comment(request, article_id):
@@ -51,13 +76,8 @@ def my_articles(request):
 def tags(request, pk):
     args = {}
     args['tags'] = Tags.objects.all()
-    # args['tag_s'] = Tags.objects.get(pk=pk)
     args['articles'] = Article.objects.filter(tags=pk).order_by('-article_date')
-    # args['articles'] = Article.objects.filter(tags__name__exact=args['tag_s'])
     args['username'] = auth.get_user(request).username
-    # print("articles all: ", Article.objects.all())
-    # print("in tags pk: ", pk, ", tag_s: ", args['tag_s'], " ", args['articles'])
-    print("in tags pk: ", pk, " ", args['articles'])
     return render(request, 'my_articles.html', args)
 
 

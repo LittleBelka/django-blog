@@ -13,7 +13,8 @@ urlpatterns = [
     url(r'^articles/create_article/$', views.create_article, name='create_article'),
     url(r'^articles/edit_article/(?P<article_id>\d+)/$', views.edit_article, name='edit_article'),
     url(r'^articles/tag/(?P<pk>\d+)/$', views.tags, name='tags'),
+    url(r'^articles/article/(?P<pk>\d+)/$', views.one_article, name='one_article'),
+    url(r'^articles/get_calendar_info/$', views.calendar_info, name='calendar_info'),
     url(r'^page/(\d+)/$', views.articles, name='articles'),
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

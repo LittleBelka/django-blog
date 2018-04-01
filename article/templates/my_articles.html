@@ -29,3 +29,25 @@
 {% endfor %}
 
 {% endblock %}
+
+
+{% block calendar %}
+<div class="calendar_test cal"></div>
+
+<script type="text/javascript">
+    $(document).ready( function(){
+        theMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        theDays = ["S", "M", "T", "W", "T", "F", "S"];
+
+        $('.calendar_test').calendar({
+            months: theMonths,
+            days: theDays,
+            req_ajax: {
+                type: 'get',
+                url: '/articles/get_calendar_info/'
+            }
+        });
+    });
+</script>
+{% endblock %}
+

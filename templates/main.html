@@ -5,8 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="{% static 'article/js/calendar.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'article/bootstrap/css/bootstrap.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'article/style_blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'article/css/style_blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'article/css/calendar.css' %}">
 </head>
 <body>
     <div>
@@ -26,6 +29,7 @@
         {% block article %}{% endblock %}
         {% block login %}{% endblock %}
         {% block my_articles %}{% endblock %}
+        {% block calendar %}{%  endblock %}
     </div>
 </body>
 </html>
