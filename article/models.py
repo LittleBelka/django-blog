@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Tags(models.Model):
+
+    class Meta():
+        db_table = "tags"
+        verbose_name = "Тег"
+        verbose_name_plural = "Теги"
+
+    name = models.CharField(max_length=50, unique=True, verbose_name=u"Теги")
+
+
 class Article(models.Model):
 
     class Meta():
@@ -15,6 +25,8 @@ class Article(models.Model):
     article_image = models.ImageField(upload_to='post_image', blank=True, null=True, verbose_name=u"Картинка")
     article_music = models.FileField(upload_to='post_music', blank=True, null=True, verbose_name=u"Музыка")
     article_video = models.FileField(upload_to='post_video', blank=True, null=True, verbose_name=u"Видео")
+    tags = models.ManyToManyField(Tags, verbose_name=u'Теги')
+    # tags = models.ManyToManyField(Tags, related_name="tags", related_query_name="tag", verbose_name=u'Теги')
     article_author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

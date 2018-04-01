@@ -4,6 +4,16 @@
 <a class="btn btn-primary btn-create-article" href="/articles/create_article/">Create new post</a>
 <!--<a class="btn btn-primary btn-create-article" href="{%  url 'article:create_article' %}">Create new post</a>-->
 
+<div>
+    <b class="date-article">tags:</b>
+{% for tag in tags %}
+    <a href="/articles/tag/{{ tag.id }}">{{ tag.name }}</a>
+
+    {% if not forloop.last %}, {% endif %}
+{% endfor %}
+<br><a href="/articles/my_articles/">Show all my articles</a>
+</div>
+
 {% for article in articles %}
     <div class="one-in-articles">
         <div class="d-flex flex-row justify-content-between">
