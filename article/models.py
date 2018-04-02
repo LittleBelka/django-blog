@@ -11,6 +11,9 @@ class Tags(models.Model):
 
     name = models.CharField(max_length=50, unique=True, verbose_name=u"Теги")
 
+    def __str__(self):
+        return self.name
+
 
 class Article(models.Model):
 
@@ -26,7 +29,6 @@ class Article(models.Model):
     article_music = models.FileField(upload_to='post_music', blank=True, null=True, verbose_name=u"Музыка")
     article_video = models.FileField(upload_to='post_video', blank=True, null=True, verbose_name=u"Видео")
     tags = models.ManyToManyField(Tags, verbose_name=u'Теги')
-    # tags = models.ManyToManyField(Tags, related_name="tags", related_query_name="tag", verbose_name=u'Теги')
     article_author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
